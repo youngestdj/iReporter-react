@@ -6,6 +6,7 @@ import Signup from '../views/signup';
 import Login from '../views/login';
 import CreateRecord from '../views/createRecord';
 import Profile from '../views/profile';
+import UserRecords from '../views/userRecords';
 
 const Routes = () => (
   <Switch>
@@ -15,6 +16,7 @@ const Routes = () => (
     <Route path="/login" exact component={Login} />
     <Route path="/create_Record" exact component={CreateRecord} />
     <Route path="/profile" exact component={Profile} />
+    <Route path="/user_records" exact component={UserRecords} />
   </Switch>
 );
 
