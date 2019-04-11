@@ -1,0 +1,416 @@
+@font-face {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/OpenSans-Regular.ttf") format("opentype");
+  }
+  @font-face {
+  font-family: Open Sans bold;
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/OpenSans-Bold.ttf") format("opentype");
+  }
+  
+  body {
+    background: linear-gradient(to right, #2a0845, #6441A5);
+      color: #fff;
+      font-family: 'Open Sans', serif;
+      margin:0;
+      padding: 0;
+      font-size: 16px;
+  }
+  h1, h2, h3, h4, h5, h6 {
+      font-family: 'Open Sans bold';
+  }
+  nav{
+    padding: 20px 0;
+  }
+  nav select {
+    display: none;
+  }
+  a {
+    transition: all  ease-in-out 0.4s;
+    color: #fff;
+    font-weight: 400;
+  }
+  a:hover {
+    text-decoration:underline;
+    color: #ccc;
+  }
+  input, button, textarea, .signup select, .button {
+    background:transparent;
+      border: 1px solid #ccc;
+      padding: 12px 25px;
+      color: #fff;
+      margin:2px 0;
+      font-size: 14px;
+      width: 100%;
+      display: inline-block;
+      box-sizing: border-box;
+      transition: all  ease-in-out 0.4s;
+  }
+  .signup option {
+    background-color:#000;
+    padding: 10px;
+  }
+  a.button {
+    text-decoration: none;
+  }
+  button, .button {
+      font-weight:bold;
+      cursor: pointer;
+      padding: 15px 25px;
+      background-color: #e2d754;
+      color: #51455c;
+      box-shadow: 0 12px 60px -7px #6f6603;
+      font-size: 1.1em;
+  }
+  button:hover, .button:hover {
+      background-color: #d1c643;
+      color: #51455c;
+  }
+  form {
+    width: 400px;
+    margin: auto;
+  }
+  footer {
+    font-size: 0.8em;
+    text-align: center;
+    border-top: 2px solid #000;
+    padding:20px;
+    color: #ddd;
+    margin-top: 20px;
+  }
+  footer a {
+    margin: 10px;
+    padding-right: 10px;
+    border-right: 1px solid #fff;
+    line-height: 2.5em;
+  }
+  footer a:last-child {
+    border:none;
+  }
+  
+  .logo, .logo a {
+    font-size: 1.5em;
+    display: inline-block;
+    font-weight: bold;
+      text-shadow: 0 0 30px #333;
+  }
+  .links {
+    display: inline-block;
+    text-decoration: none;
+    list-style-type: none;
+    margin:0;
+    padding: 0;
+    float: right;
+    padding-top: 0.4em;
+  }
+  .links li {
+    display: inline-block;
+    margin-left: 20px;
+  }
+  
+  .links a, .logo a {
+    color: #fff;
+    font-size: 1.1em;
+    text-decoration: none;
+  }
+  .links a {
+    color: #f8ef7c;
+    font-weight: 400;
+  }
+  .links a:hover {
+    color: #fff;
+  }
+  .container {
+    width: 85%;
+    margin: auto;
+  }
+  .main, .signup, .login {
+    text-align: center;
+    padding-top: 100px;
+  }
+  .main h1, .signup h1, .login h1 {
+    font-size: 3em;
+  }
+  .main p, .signup p {
+    font-size: 1.2em;
+    width: 60%;
+    text-align: center;
+    margin:auto;
+    line-height: 2em;
+    text-shadow: 1px 1px 2px #111;
+  }
+  .signup p {
+    line-height: 1.8em;
+  }
+  .main button, .main .button {
+    margin-top: 50px;
+    width: 200px;
+  }
+  .loud {
+    background: url('../img/loud.png') no-repeat;
+    background-position: bottom right;
+    padding-bottom: 100px;
+  }
+  .login {
+    background: url('../img/login.png') no-repeat;
+    background-position: bottom right;
+    padding-bottom: 200px;
+  }
+  .record {
+    background: url('../img/police.png') no-repeat;
+    background-position: bottom right;
+  }
+  .signup {
+    padding-top: 10px;
+  }
+  .signup button, .login button {
+    width: 100%;
+  }
+  .vertical-spacer {
+    padding: 10px 0;
+  }
+  .record-group {
+    width: 47%;
+    text-align: center;
+    margin:10px auto;
+    display: inline-block;
+  }
+  .admin-record-group {
+    width: 40%;
+    margin: 30px;
+    display: inline-block;
+    font-size: 0.95em;
+  }
+  .record-item {
+    padding: 15px 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    overflow: auto;
+  }
+  .record-item .title {
+    font-weight: 200;
+    width: 10%;
+    display: inline-block;
+    color: #fffaaa;
+  }
+  .record-item .content {
+    float: right;
+    width: 80%;
+    display: inline-block;
+  }
+  .admin-record-group .record-item {
+    padding:10px 0px;
+  }
+  .admin-record-group .record-item .content {
+    width: 70%;
+  }
+  .record-group .record-item:last-child, .admin-record-group .record-item:last-child {
+    border: none;
+  }
+  .record-item button {
+    width: 40%;
+    display: inline-block;
+    text-align: center;
+    border-width: 1px;
+  }
+  .admin-record-group button {
+    width: 120px;
+    text-align: center;
+  }
+  button.fade {
+    cursor: not-allowed;
+    color: #ccc;
+    border-color: #ccc;
+    width: 200px;
+    box-shadow: none;
+    font-size: 0.9em;	
+    background-color:transparent;
+  
+  }
+  button.fade:hover {
+    background-color:inherit;
+  }
+  .center {
+    text-align: center;
+  }
+  .delete {
+    background-color: #c84b3f;
+  }
+  .edit {
+    background-color: #253b4b;
+    margin-right: 10px;
+  }
+  .edit, .delete {
+    color: #fff;
+    box-shadow: none;
+    font-size: 0.9em;
+    font-weight:normal;
+  }
+  .stat {
+    display: inline-block;
+    padding: 10px;
+    border-right: 1px solid #aaa;
+    text-align: center;
+    color: rgb(244, 127, 84);
+  }
+  .stat .item {
+    font-size: 1.5em;
+    color: #000;
+    font-weight:600;
+  
+  }
+  .container .stat:last-child {
+    border: none;
+  }
+  .see-more {
+    color: #6df58e;
+    font-size: 0.9em;
+  }
+  .circle {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+    border-radius: 50%;
+    background-color:#fff;
+    height: 50px;
+    width: 50px;
+  }
+  #error, #success {
+    background-color: #fee;
+    padding: 10px;
+    border: #faa solid 1px;
+    visibility: hidden;
+    color: #555;
+    position: -webkit-sticky;
+      position: sticky;
+      top:0px;
+  }
+  .error, #error {
+    background-color: #fcc;
+    color: #f55;
+  }
+  #success {
+    background-color: #efe;
+    border: #afa solid 1px;
+  }
+  #success a {
+    color: #000;
+  }
+  .modal {
+    display: none; 
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.6);
+  }
+  .modal-content {
+    background-color: #2a0845;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+  }
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .header {
+    overflow: auto;
+  }
+  .reload {
+    font-weight: bold;
+    color: #0e0;
+    cursor: pointer;
+  }
+  
+  @media(max-width:768px){
+    .main, .login {
+      padding-top: 50px;
+    }
+    .container {
+      width: 90%;
+    }
+    .main p {
+      width: 80%;
+    }
+    .main button {
+      margin-top: 30px;
+    }
+    .record, .login, .sign {
+      background: transparent;
+    }
+    .record-group {
+      width: 100%;
+    }
+    .record-item .content {
+      width: 70%;
+      display: inline-block;
+    }
+    .admin-record-group, .record-group {
+      width: 70%;
+    }
+  
+  
+  
+  
+  }
+  
+  @media(max-width:480px){
+    form {
+      width: 100%;
+    }
+    .signup input {
+      width: 100%;
+    }
+    nav .links {
+      display: none;
+    }
+    nav select {
+      display: inline-block;
+      float: right;
+      height: 2em;
+      background: #000;
+      color: #fff;
+      font-size: 0.9em;
+      border: none;
+      margin-top: 0.2em;
+    }
+    nav option {
+      margin-top: 10px;
+    }
+    .main, .login {
+      padding-top: 10px;
+    }
+    .record-group {
+      width: 100%;
+    }
+    .record-item .title {
+      width: 100%;
+      display: block;
+    }
+    .record-item .content {
+      width: 100%;
+    }
+    .record-item button {
+      width: 100%;
+    }
+  
+  
+  
+  }
