@@ -12,13 +12,13 @@ import AllRecords from '../views/Admin';
 const Routes = () => (
   <Switch>
     <Route path="/" exact component={Home} />
-    <Route component={NotFound} />
     <Route path="/signup" exact component={Signup} />
     <Route path="/login" exact component={Login} />
     <Route path="/create_Record" exact component={CreateRecord} />
     <Route path="/profile" exact component={Profile} />
     <Route path="/user_records" exact component={UserRecords} />
     <Route path="/admin" exact component={AllRecords} />
+    <Route component={NotFound} />
   </Switch>
 );
 
