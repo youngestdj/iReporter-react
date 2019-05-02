@@ -278,14 +278,13 @@
     height: 50px;
     width: 50px;
   }
-  #error, #success {
+  #error, #success, #loading {
     background-color: #fee;
     padding: 10px;
     border: #faa solid 1px;
     color: #555;
-    position: -webkit-sticky;
-      position: sticky;
-      top:0px;
+    position: sticky;
+    top:0px;
   }
   .error, #error {
     background-color: #fcc;

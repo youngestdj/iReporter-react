@@ -4,9 +4,8 @@ export const setCookie = (name, value, days) => {
   const expires = `expires=${date.toUTCString()}`;
   document.cookie = `${name}=${value}; ${expires}; path=/`;
 };
-
 export const getCookie = (cookieName) => {
-  const name = `${cookieName} =`;
+  const name = `${cookieName}=`;
   const decodedCookie = decodeURIComponent(document.cookie);
   const cookieArr = decodedCookie.split(';');
   for (let i = 0; i < cookieArr.length; i += 1) {
