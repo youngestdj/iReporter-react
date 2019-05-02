@@ -51,6 +51,7 @@ const Login = (props) => {
       setCookie('iReporterFirstname', firstname, 30);
       setCookie('iReporterLastname', lastname, 30);
       setCookie('iReporterOthernames', othernames, 30);
+      return props.history.push('/create_record');
     }
   };
   return (
@@ -77,7 +78,8 @@ const Login = (props) => {
 };
 
 Login.propTypes = {
-  logUserIn: PropTypes.func.isRequired
+  logUserIn: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default connect(() => ({}), { logUserIn })(Login);
