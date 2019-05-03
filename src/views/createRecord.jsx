@@ -88,7 +88,7 @@ const CreateRecord = (props) => {
           </form>
         </div>
       </section>
-      <Footer />
+      <Footer isLoggedIn />
     </>
   );
 };
