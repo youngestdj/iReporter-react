@@ -243,6 +243,10 @@
     background-color: #253b4b;
     margin-right: 10px;
   }
+  .record-status {
+    padding: 15px 25px;
+    background: rgba(0,0,0,0.2);
+  }
   .edit, .delete {
     color: #fff;
     box-shadow: none;
@@ -298,9 +302,8 @@
     color: #000;
   }
   .modal {
-    display: none; 
     position: fixed;
-    z-index: 1; 
+    z-index: 10; 
     left: 0;
     top: 0;
     width: 100%; 
@@ -335,6 +338,12 @@
     font-weight: bold;
     color: #0e0;
     cursor: pointer;
+  }
+  .inline {
+    display: inline;
+  }
+  .block {
+    display: block;
   }
   
   @media(max-width:768px){
@@ -408,7 +417,5 @@
     .record-item button {
       width: 100%;
     }
-  
-  
   
   }

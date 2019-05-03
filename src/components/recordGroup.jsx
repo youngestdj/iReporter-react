@@ -1,28 +1,42 @@
 import React from 'react';
-import '../assets/css/style.css';
+import PropTypes from 'prop-types';
 
-const RecordGroup = () => (
-  <div className="admin-record-group">
-    <fieldset>
-      <legend>(1) 2018 / 12 / 14</legend>
-      <div className="record-item">
-        <span className="title">Title:</span>
-        <span className="content">This is a new red flag</span>
-      </div>
-      <div className="record-item">
-        <span className="title">Coordinates:</span>
-        <span className="content">6.5244° N, 3.3792° E</span>
-      </div>
-      <div className="record-item">
-        <span className="title">Status:</span>
-        <span className="content">draft</span>
-      </div>
-      <div className="record-item">
-        <span className="title">Comment:</span>
-        <span className="content">This is a new comment</span>
-      </div>
-    </fieldset>
-  </div>
-);
+const RecordGroup = (props) => {
+  const {
+    date, title, comment, status, coordinates
+  } = props;
+
+  return (
+    <div className="admin-record-group">
+      <fieldset>
+        <legend>{date}</legend>
+        <div className="record-item">
+          <span className="title">Title:</span>
+          <span className="content">{title}</span>
+        </div>
+        <div className="record-item">
+          <span className="title">Coordinates:</span>
+          <span className="content">{coordinates}</span>
+        </div>
+        <div className="record-item">
+          <span className="title">Status:</span>
+          <span className="content">{status}</span>
+        </div>
+        <div className="record-item">
+          <span className="title">Comment:</span>
+          <span className="content">{comment}</span>
+        </div>
+      </fieldset>
+    </div>
+  );
+};
+
+RecordGroup.propTypes = {
+  date: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  coordinates: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+  comment: PropTypes.string.isRequired
+};
 
 export default RecordGroup;
