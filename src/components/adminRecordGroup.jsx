@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/css/style.css';
 import Button from './button';
 
-const UserRecordGroup = () => (
+const AdminRecordGroup = () => (
 
   <div className="admin-record-group">
     <fieldset>
@@ -33,4 +33,4 @@ const UserRecordGroup = () => (
   </div>
 );
 
-export default UserRecordGroup;
+export default AdminRecordGroup;

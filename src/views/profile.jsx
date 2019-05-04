@@ -33,8 +33,6 @@ const Profile = (props) => {
     getRedFlags();
     getInterventions();
   }, []);
-  console.log(redFlags);
-  console.log(interventions);
   return (
     <>
       <Header isLoggedIn username={getCookie('iReporterUsername')} />

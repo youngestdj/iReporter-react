@@ -77,7 +77,7 @@ const CreateRecord = (props) => {
             }
             <input type="text" name="title" placeholder="Record title" onChange={updateInput} />
             <select name="type" onChange={updateInput}>
-              <option value="" name="type" selected="selected">Select record type</option>
+              <option value="" name="type">Select record type</option>
               <option value="red-flags" className="option-style">Red flag</option>
               <option value="interventions" className="option-style">intervention</option>
             </select>
