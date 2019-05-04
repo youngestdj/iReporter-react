@@ -19,58 +19,10 @@ const Signup = (props) => {
     message: null
   });
 
-  const updateEmail = (event) => {
+  const updateInput = (event) => {
     setState({
       ...state,
-      email: event.target.value,
-      message: null,
-      error: null
-    });
-  };
-  const updatePassword = (event) => {
-    setState({
-      ...state,
-      password: event.target.value,
-      message: null,
-      error: null
-    });
-  };
-  const updateFirstname = (event) => {
-    setState({
-      ...state,
-      firstname: event.target.value,
-      message: null,
-      error: null
-    });
-  };
-  const updateLastname = (event) => {
-    setState({
-      ...state,
-      lastname: event.target.value,
-      message: null,
-      error: null
-    });
-  };
-  const updateOthernames = (event) => {
-    setState({
-      ...state,
-      othernames: event.target.value,
-      message: null,
-      error: null
-    });
-  };
-  const updatePhone = (event) => {
-    setState({
-      ...state,
-      phonenumber: event.target.value,
-      message: null,
-      error: null
-    });
-  };
-  const updateUsername = (event) => {
-    setState({
-      ...state,
-      username: event.target.value,
+      [event.target.name]: event.target.value,
       message: null,
       error: null
     });
@@ -96,13 +48,13 @@ const Signup = (props) => {
             {
               state.message ? <div id="success">{state.message}</div> : null
             }
-            <input type="text" name="firstname" placeholder="First name" onChange={updateFirstname} />
-            <input type="text" name="lastname" placeholder="Last name" onChange={updateLastname} />
-            <input type="text" name="othernames" placeholder="Other names" onChange={updateOthernames} />
-            <input type="email" name="email" placeholder="Email" onChange={updateEmail} />
-            <input type="text" name="phone" placeholder="Phone number" onChange={updatePhone} />
-            <input type="text" name="username" placeholder="Username" onChange={updateUsername} />
-            <input type="password" name="password" placeholder="password" onChange={updatePassword} />
+            <input type="text" name="firstname" placeholder="First name" onChange={updateInput} />
+            <input type="text" name="lastname" placeholder="Last name" onChange={updateInput} />
+            <input type="text" name="othernames" placeholder="Other names" onChange={updateInput} />
+            <input type="email" name="email" placeholder="Email" onChange={updateInput} />
+            <input type="text" name="phonenumber" placeholder="Phone number" onChange={updateInput} />
+            <input type="text" name="username" placeholder="Username" onChange={updateInput} />
+            <input type="password" name="password" placeholder="password" onChange={updateInput} />
             <Button text="Submit" type="submit" id="submit" onClick={completeRequest} />
           </form>
         </div>
