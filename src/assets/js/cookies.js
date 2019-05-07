@@ -31,3 +31,7 @@ export const extendCookie = (name, value, days) => {
   const expires = `expires=${date.toUTCString()}`;
   document.cookie = `${name}=${value}; ${expires}; path=/`;
 };
+
+export const logout = () => {
+  setCookie('iReporterToken', '', '-1');
+};

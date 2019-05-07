@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/header';
 import Button from '../components/button';
 import { signUserUp } from '../redux/actions/auth';
+import { setCookie } from '../assets/js/cookies';
 
 const Signup = (props) => {
   const [state, setState] = useState({
@@ -16,7 +17,8 @@ const Signup = (props) => {
     phonenumber: null,
     username: null,
     error: null,
-    message: null
+    message: null,
+    loading: false
   });
 
   const updateInput = (event) => {
@@ -30,9 +32,23 @@ const Signup = (props) => {
 
   const completeRequest = async (event) => {
     event.preventDefault();
+    setState({
+      ...state, loading: true, message: null, error: null
+    });
     const res = await props.signUserUp(state);
-    if (res.error) setState({ ...state, error: res.error });
-    else if (res.status === 201) setState({ ...state, message: 'Account registered successfully' });
+    if (res.error) setState({ ...state, error: res.error, loading: false });
+    else if (res.status === 201) {
+      setState({ ...state, message: 'Account registered successfully', loading: false });
+      const {
+        username, firstname, lastname, othernames
+      } = res.data[0].user;
+      await setCookie('iReporterToken', res.data[0].token, 30);
+      await setCookie('iReporterUsername', username, 30);
+      await setCookie('iReporterFirstname', firstname, 30);
+      await setCookie('iReporterLastname', lastname, 30);
+      await setCookie('iReporterOthernames', othernames, 30);
+      return props.history.push('/create_record');
+    }
   };
 
   return (
@@ -47,6 +63,9 @@ const Signup = (props) => {
             }
             {
               state.message ? <div id="success">{state.message}</div> : null
+            }
+            {
+              state.loading ? <div className="loading">Loading please wait...</div> : null
             }
             <input type="text" name="firstname" placeholder="First name" onChange={updateInput} />
             <input type="text" name="lastname" placeholder="Last name" onChange={updateInput} />
@@ -64,7 +83,8 @@ const Signup = (props) => {
 };
 
 Signup.propTypes = {
-  signUserUp: PropTypes.func.isRequired
+  signUserUp: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 

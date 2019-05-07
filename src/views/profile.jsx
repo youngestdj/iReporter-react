@@ -17,22 +17,38 @@ const Profile = (props) => {
   const [interventions, setInterventions] = useState({
     allInterventions: null
   });
-  const [stats] = useState({
+  const stats = {
     new: 0,
     resolved: 0,
     rejected: 0,
-    underInvestigation: 0
-  });
+    underInvestigation: 0,
+  };
+  const updateStats = (records) => {
+    if (records) {
+      records.map((data) => {
+        if (data.status === 'draft') stats.new += 1;
+        else if (data.status === 'resolved') stats.resolved += 1;
+        else if (data.status === 'rejected') stats.rejected += 1;
+        if (data.status === 'under investigation') stats.underInvestigation += 1;
+        return stats;
+      });
+    }
+  };
   useEffect(() => {
-    const getRedFlags = async () => {
-      await props.getRecords('red-flags').then(res => setRedFlags({ allRedFlags: res.data }));
+    const getAllRecords = async () => {
+      await props.getRecords('red-flags').then(async (res) => {
+        setRedFlags({ allRedFlags: res.data });
+        await props.getRecords('interventions').then((res) => {
+          setInterventions({ allInterventions: res.data });
+        });
+      });
     };
-    const getInterventions = async () => {
-      await props.getRecords('interventions').then(res => setInterventions({ allInterventions: res.data }));
-    };
-    getRedFlags();
-    getInterventions();
+    getAllRecords();
   }, []);
+
+  updateStats(redFlags.allRedFlags);
+  updateStats(interventions.allInterventions);
+
   return (
     <>
       <Header isLoggedIn username={getCookie('iReporterUsername')} />
@@ -74,12 +90,8 @@ const Profile = (props) => {
           <h2>Red flags</h2>
           <div className="red-flags">
             {
-              redFlags.allRedFlags ? redFlags.allRedFlags.map((data) => {
-                if (data.status === 'draft') stats.new += 1;
-                else if (data.status === 'resolved') stats.resolved += 1;
-                else if (data.status === 'rejected') stats.rejected += 1;
-                if (data.status === 'under investigation') stats.underInvestigation += 1;
-                return (
+              redFlags.allRedFlags ? redFlags.allRedFlags.map(data => (
+                (
                   <RecordGroup
                     key={data.id}
                     date={data.createdon}
@@ -88,20 +100,15 @@ const Profile = (props) => {
                     comment={data.comment}
                     status={data.status}
                   />
-                );
-              }) : <span>Loading red-flags...</span>
+                ))) : <span>Loading red-flags...</span>
             }
           </div>
 
           <h2>Interventions</h2>
           <div className="interventions">
             {
-              interventions.allInterventions ? interventions.allInterventions.map((data) => {
-                if (data.status === 'draft') stats.new += 1;
-                else if (data.status === 'resolved') stats.resolved += 1;
-                else if (data.status === 'rejected') stats.rejected += 1;
-                if (data.status === 'under investigation') stats.underInvestigation += 1;
-                return (
+              interventions.allInterventions ? interventions.allInterventions.map(data => (
+                (
                   <RecordGroup
                     key={data.id}
                     date={data.createdon}
@@ -110,8 +117,7 @@ const Profile = (props) => {
                     comment={data.comment}
                     status={data.status}
                   />
-                );
-              }) : <span>Loading interventions...</span>
+                ))) : <span>Loading interventions...</span>
             }
           </div>
 

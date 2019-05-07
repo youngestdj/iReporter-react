@@ -2,41 +2,37 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import Header from '../components/header';
 import Button from '../components/button';
 import { logUserIn } from '../redux/actions/auth';
-import { setCookie } from '../assets/js/cookies';
+import { setCookie, getCookie } from '../assets/js/cookies';
 
 
 const Login = (props) => {
+  if (getCookie('iReporterToken')) return <Redirect to="/create_record" />;
   const [state, setState] = useState({
     email: null,
     password: null,
     error: null,
-    message: null
+    message: null,
+    loading: false
   });
 
-  const updateEmail = (event) => {
+
+  const updateInput = (event) => {
     setState({
-      ...state,
-      email: event.target.value,
-      message: null,
-      error: null
-    });
-  };
-  const updatePassword = (event) => {
-    setState({
-      ...state,
-      password: event.target.value,
-      message: null,
-      error: null
+      ...state, [event.target.name]: event.target.value, message: null, error: null, loading: false
     });
   };
 
   const completeRequest = async (event) => {
     event.preventDefault();
+    setState({
+      ...state, loading: true, error: null, message: null
+    });
     const res = await props.logUserIn(state);
-    if (res.error) setState({ ...state, error: res.error });
+    if (res.error) setState({ ...state, error: res.error, loading: false });
     else if (res.status === 200) {
       const {
         username,
@@ -45,12 +41,12 @@ const Login = (props) => {
         othernames
       } = res.data[0].user;
 
-      setState({ ...state, message: 'Login successful' });
-      setCookie('iReporterToken', res.data[0].token, 30);
-      setCookie('iReporterUsername', username, 30);
-      setCookie('iReporterFirstname', firstname, 30);
-      setCookie('iReporterLastname', lastname, 30);
-      setCookie('iReporterOthernames', othernames, 30);
+      await setState({ ...state, message: 'Login successful', loading: false });
+      await setCookie('iReporterToken', res.data[0].token, 30);
+      await setCookie('iReporterUsername', username, 30);
+      await setCookie('iReporterFirstname', firstname, 30);
+      await setCookie('iReporterLastname', lastname, 30);
+      await setCookie('iReporterOthernames', othernames, 30);
       return props.history.push('/create_record');
     }
   };
@@ -67,8 +63,11 @@ const Login = (props) => {
             {
               state.message ? <div id="success">{state.message}</div> : null
             }
-            <input type="email" name="email" placeholder="Email" onChange={updateEmail} />
-            <input type="password" name="password" placeholder="password" onChange={updatePassword} />
+            {
+              state.loading ? <div className="loading">Loading please wait....</div> : null
+            }
+            <input type="email" name="email" placeholder="Email" onChange={updateInput} />
+            <input type="password" name="password" placeholder="password" onChange={updateInput} />
             <Button type="submit" id="submit" text="Login" onClick={completeRequest} />
           </form>
         </div>

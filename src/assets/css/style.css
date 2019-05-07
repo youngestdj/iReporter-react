@@ -301,6 +301,13 @@
   #success a {
     color: #000;
   }
+  .loading {
+    color: #ccc;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    font-size: 1.2em;
+    margin: auto 0;
+  }
   .modal {
     position: fixed;
     z-index: 10; 

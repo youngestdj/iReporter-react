@@ -5,7 +5,8 @@ import {
 import { getCookie } from '../../assets/js/cookies';
 
 const apiUrl = 'https://jessam-ireporter.herokuapp.com';
-const token = getCookie('iReporterToken');
+
+// const token = getCookie('iReporterToken');
 
 export const sendRecordCredentials = () => ({
   type: CREATE_RECORD,
@@ -25,6 +26,7 @@ export const deleteCurrentRecord = () => ({
 
 export const createRecord = credentials => async (dispatch) => {
   const { type } = credentials;
+  const token = getCookie('iReporterToken');
   try {
     const { data } = await axios.post(
       `${apiUrl}/api/v1/${type}`,
@@ -44,6 +46,7 @@ export const createRecord = credentials => async (dispatch) => {
 };
 
 export const getRecords = type => async (dispatch) => {
+  const token = getCookie('iReporterToken');
   try {
     const { data } = await axios.get(
       `${apiUrl}/api/v1/${type}`,
@@ -62,6 +65,7 @@ export const getRecords = type => async (dispatch) => {
 };
 
 export const getCurrentRecord = (type, id) => async (dispatch) => {
+  const token = getCookie('iReporterToken');
   try {
     const { data } = await axios.get(
       `${apiUrl}/api/v1/${type}/${id}`,
@@ -80,6 +84,7 @@ export const getCurrentRecord = (type, id) => async (dispatch) => {
 };
 
 export const updateData = (type, id, field, payload) => async (dispatch) => {
+  const token = getCookie('iReporterToken');
   try {
     const { data } = await axios.patch(
       `${apiUrl}/api/v1/${type}/${id}/${field}`,
@@ -99,6 +104,7 @@ export const updateData = (type, id, field, payload) => async (dispatch) => {
 };
 
 export const deleteRecord = (type, id) => async (dispatch) => {
+  const token = getCookie('iReporterToken');
   try {
     const { data } = await axios.delete(
       `${apiUrl}/api/v1/${type}/${id}`,
